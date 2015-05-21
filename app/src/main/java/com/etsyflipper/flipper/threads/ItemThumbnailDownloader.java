@@ -1,4 +1,4 @@
-package com.etsyflipper.flipper;
+package com.etsyflipper.flipper.threads;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

@@ -12,6 +12,13 @@ import android.support.v4.view.ViewPager;
 import android.widget.ImageView;
 
 import com.etsyflipper.estyflipper.R;
+import com.etsyflipper.flipper.threads.ApiFetcher;
+import com.etsyflipper.flipper.threads.FetchItemsTask;
+import com.etsyflipper.flipper.interfaces.ItemInterface;
+import com.etsyflipper.flipper.threads.ItemThumbnailDownloader;
+import com.etsyflipper.flipper.objects.FlipsyItem;
+import com.etsyflipper.flipper.ui.PageTransformer;
+import com.etsyflipper.flipper.ui.ScreenSlidePagerAdapter;
 
 import java.util.ArrayList;
 

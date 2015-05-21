@@ -1,4 +1,4 @@
-package com.etsyflipper.flipper;
+package com.etsyflipper.flipper.objects;
 
 /**
  * Created by patriciaestridge on 4/21/14.

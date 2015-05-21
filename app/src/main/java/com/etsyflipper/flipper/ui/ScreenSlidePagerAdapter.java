@@ -1,4 +1,4 @@
-package com.etsyflipper.flipper;
+package com.etsyflipper.flipper.ui;
 
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;
@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.etsyflipper.estyflipper.R;
+import com.etsyflipper.flipper.threads.ItemThumbnailDownloader;
+import com.etsyflipper.flipper.objects.FlipsyItem;
 
 import java.util.ArrayList;
 

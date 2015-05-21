@@ -1,7 +1,9 @@
-package com.etsyflipper.flipper;
+package com.etsyflipper.flipper.threads;
 
 import android.net.Uri;
 import android.util.Log;
+
+import com.etsyflipper.flipper.objects.FlipsyItem;
 
 import org.json.JSONArray;
 import org.json.JSONException;

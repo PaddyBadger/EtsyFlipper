@@ -1,4 +1,6 @@
-package com.etsyflipper.flipper;
+package com.etsyflipper.flipper.interfaces;
+
+import com.etsyflipper.flipper.objects.FlipsyItem;
 
 import java.util.ArrayList;
 

@@ -1,8 +1,6 @@
-package com.etsyflipper.flipper;
+package com.etsyflipper.flipper.ui;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.os.Handler;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ImageView;
@@ -10,8 +8,8 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.etsyflipper.estyflipper.R;
-
-import java.util.ArrayList;
+import com.etsyflipper.flipper.threads.ItemThumbnailDownloader;
+import com.etsyflipper.flipper.objects.FlipsyItem;
 
 /**
  * Created by patriciaestridge on 4/17/14.

@@ -1,4 +1,4 @@
-package com.etsyflipper.flipper;
+package com.etsyflipper.flipper.ui;
 
 import android.support.v4.view.ViewPager;
 import android.view.View;

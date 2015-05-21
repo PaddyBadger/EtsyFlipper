@@ -1,8 +1,11 @@
-package com.etsyflipper.flipper;
+package com.etsyflipper.flipper.threads;
 
 import android.app.Activity;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
+
+import com.etsyflipper.flipper.interfaces.ItemInterface;
+import com.etsyflipper.flipper.objects.FlipsyItem;
 
 import java.util.ArrayList;
 
