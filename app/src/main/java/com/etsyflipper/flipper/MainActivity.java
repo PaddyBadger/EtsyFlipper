@@ -2,22 +2,14 @@ package com.etsyflipper.flipper;
 
 import android.app.Activity;
 import android.app.SearchManager;
-import android.app.SearchableInfo;
-import android.content.ComponentName;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
-import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.widget.ImageView;
-import android.widget.SearchView;
 
 import com.etsyflipper.estyflipper.R;
 
@@ -58,39 +50,6 @@ public class MainActivity extends Activity implements ItemInterface {
         mPager.setPageTransformer(true, new PageTransformer());
 
         fetchItems();
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        MenuItem searchItem = menu.findItem(R.id.menu_item_search);
-        SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
-
-        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        ComponentName name = getComponentName();
-        SearchableInfo searchInfo = searchManager.getSearchableInfo(name);
-
-        searchView.setSearchableInfo(searchInfo);
-
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.menu_item_search:
-                onSearchRequested();
-                return true;
-            case R.id.menu_item_clear:
-                PreferenceManager.getDefaultSharedPreferences(this)
-                        .edit()
-                        .putString(ApiFetcher.SEARCH_QUERY, null)
-                        .commit();
-                fetchItems();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
     }
 
     private void fetchItems() {
