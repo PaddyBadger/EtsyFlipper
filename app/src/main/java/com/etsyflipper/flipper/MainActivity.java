@@ -1,22 +1,18 @@
 package com.etsyflipper.flipper;
 
 import android.app.Activity;
-import android.app.SearchManager;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
-import android.preference.PreferenceManager;
 import android.support.v4.view.ViewPager;
 import android.widget.ImageView;
 
 import com.etsyflipper.estyflipper.R;
-import com.etsyflipper.flipper.threads.ApiFetcher;
-import com.etsyflipper.flipper.threads.FetchItemsTask;
 import com.etsyflipper.flipper.interfaces.ItemInterface;
-import com.etsyflipper.flipper.threads.ItemThumbnailDownloader;
 import com.etsyflipper.flipper.objects.FlipsyItem;
+import com.etsyflipper.flipper.threads.FetchItemsTask;
+import com.etsyflipper.flipper.threads.ItemThumbnailDownloader;
 import com.etsyflipper.flipper.ui.PageTransformer;
 import com.etsyflipper.flipper.ui.ScreenSlidePagerAdapter;
 
@@ -29,34 +25,24 @@ public class MainActivity extends Activity implements ItemInterface {
     private ArrayList<FlipsyItem> mItems;
     private AsyncTask<Void, Void, ArrayList<FlipsyItem>> fetchItems;
 
-    public void onNewIntent(Intent intent) {
-        intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-
-        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
-            String query = intent.getStringExtra(SearchManager.QUERY);
-
-            PreferenceManager.getDefaultSharedPreferences(this)
-                    .edit()
-                    .putString(ApiFetcher.SEARCH_QUERY, query)
-                    .commit();
-        }
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
 
-        ItemThumbnailDownloader<ImageView> thumbnailDownloader = startImageThread();
-
         mPager = (ViewPager) findViewById(R.id.pager);
         mItems = new ArrayList<>();
+
+        ItemThumbnailDownloader<ImageView> thumbnailDownloader = startImageThread();
+
         mPagerAdapter = new ScreenSlidePagerAdapter(mItems, this, thumbnailDownloader);
         mPager.setAdapter(mPagerAdapter);
         mPager.setPageTransformer(true, new PageTransformer());
 
         fetchItems();
+
+
     }
 
     private void fetchItems() {
