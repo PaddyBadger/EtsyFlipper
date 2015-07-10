@@ -8,8 +8,8 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.etsyflipper.estyflipper.R;
-import com.etsyflipper.flipper.threads.ItemThumbnailDownloader;
 import com.etsyflipper.flipper.objects.FlipsyItem;
+import com.squareup.picasso.Picasso;
 
 /**
  * Created by patriciaestridge on 4/17/14.
@@ -29,14 +29,14 @@ public class GalleryView extends ScrollView {
         super.onFinishInflate();
     }
 
-    public void bindData(View v, FlipsyItem item, ItemThumbnailDownloader<ImageView> mThumbnailThread) {
+    public void bindData(View v, FlipsyItem item) {
 
         TextView titleTextView = (TextView) v.findViewById(R.id.title);
         String title = item.getTitle();
         titleTextView.setText(title);
 
         ImageView imageView = (ImageView) v.findViewById(R.id.item_imageView);
-        mThumbnailThread.queueThumbnail(imageView, item.getImageUrl());
+        Picasso.with(getContext()).load(item.getImageUrl()).into(imageView);
 
         TextView priceTextView = (TextView) v.findViewById(R.id.price);
         String price = item.getPrice();

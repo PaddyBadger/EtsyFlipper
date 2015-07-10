@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.etsyflipper.estyflipper.R;
-import com.etsyflipper.flipper.threads.ItemThumbnailDownloader;
 import com.etsyflipper.flipper.objects.FlipsyItem;
 
 import java.util.ArrayList;
@@ -20,13 +19,14 @@ public class ScreenSlidePagerAdapter extends PagerAdapter {
 
     private ArrayList<FlipsyItem> items;
     private LayoutInflater inflater;
-    private ItemThumbnailDownloader thumbnailDownloader;
+ //   private ItemThumbnailDownloader thumbnailDownloader;
 
-    public ScreenSlidePagerAdapter(ArrayList<FlipsyItem> mItems, Context context, ItemThumbnailDownloader thumbnailDownloader) {
+    public ScreenSlidePagerAdapter(ArrayList<FlipsyItem> mItems, Context context) {
         items = mItems;
         inflater = LayoutInflater.from(context);
-        this.thumbnailDownloader = thumbnailDownloader;
+  //      this.thumbnailDownloader = thumbnailDownloader;
     }
+
 
     @Override
     public int getCount() {
@@ -44,7 +44,7 @@ public class ScreenSlidePagerAdapter extends PagerAdapter {
 
         FlipsyItem flipsyItem = items.get(position);
         GalleryView view = (GalleryView) inflater.inflate(R.layout.gallery_fragment, container, false);
-        view.bindData(view, flipsyItem, thumbnailDownloader);
+        view.bindData(view, flipsyItem);
         container.addView(view, 0);
         return view;
     }
