@@ -26,7 +26,7 @@ import java.util.ArrayList;
 public class EtsyViewerActivity extends Activity implements ItemInterface {
 
     private ViewPager mPager;
-    private ScreenSlidePagerAdapter mPagerAdapter;
+        private ScreenSlidePagerAdapter mPagerAdapter;
     private ArrayList<FlipsyItem> mItems;
     private AsyncTask<Void, Void, ArrayList<FlipsyItem>> fetchItems;
 
@@ -39,7 +39,7 @@ public class EtsyViewerActivity extends Activity implements ItemInterface {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.viewer_layout);
 
         mPager = (ViewPager) findViewById(R.id.pager);
         mItems = new ArrayList<>();
@@ -47,11 +47,30 @@ public class EtsyViewerActivity extends Activity implements ItemInterface {
         mPagerAdapter = new ScreenSlidePagerAdapter(mItems, this);
         mPager.setAdapter(mPagerAdapter);
         mPager.setPageTransformer(true, new PageTransformer());
+        fetchItems();
 
-        handleIntent(getIntent());
-
+      //For phase 3 if you want search  handleIntent(getIntent());
     }
 
+    private void fetchItems() {
+        fetchItems = new FetchItemsTask(this, this).execute();
+    }
+
+    @Override
+    public void itemsFetched(ArrayList<FlipsyItem> mItems) {
+        mPagerAdapter.dataUpdated(mItems);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (mPager.getCurrentItem() == 0) {
+            super.onBackPressed();
+        } else {
+            mPager.setCurrentItem(mPager.getCurrentItem() - 1);
+        }
+    }
+
+    //Stuff for search - phase 3
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the options menu from XML
@@ -101,24 +120,6 @@ public class EtsyViewerActivity extends Activity implements ItemInterface {
     @Override
     public boolean onSearchRequested() {
         return super.onSearchRequested();
-    }
-
-    private void fetchItems() {
-        fetchItems = new FetchItemsTask(this, this).execute();
-    }
-
-    @Override
-    public void itemsFetched(ArrayList<FlipsyItem> mItems) {
-        mPagerAdapter.dataUpdated(mItems);
-    }
-
-    @Override
-    public void onBackPressed() {
-        if (mPager.getCurrentItem() == 0) {
-            super.onBackPressed();
-        } else {
-            mPager.setCurrentItem(mPager.getCurrentItem() - 1);
-        }
     }
 }
 

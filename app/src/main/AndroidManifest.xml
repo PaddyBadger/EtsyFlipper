@@ -12,14 +12,14 @@
                   android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"
+                          android:label="@string/app_name"/>
             </intent-filter>
         </activity>
 
         <activity
-            android:launchMode="singleTop"
             android:name="com.etsyflipper.flipper.EtsyViewerActivity"
-            android:label="@string/app_name" android:screenOrientation="portrait">
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH"/>
             </intent-filter>
