@@ -23,12 +23,18 @@ import com.etsyflipper.flipper.ui.ScreenSlidePagerAdapter;
 
 import java.util.ArrayList;
 
-public class MainActivity extends Activity implements ItemInterface {
+public class EtsyViewerActivity extends Activity implements ItemInterface {
 
     private ViewPager mPager;
     private ScreenSlidePagerAdapter mPagerAdapter;
     private ArrayList<FlipsyItem> mItems;
     private AsyncTask<Void, Void, ArrayList<FlipsyItem>> fetchItems;
+
+    public static void startMe(Activity starter) {
+        Intent itt = new Intent();
+        itt.setClass(starter, EtsyViewerActivity.class);
+        starter.startActivity(itt);
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
